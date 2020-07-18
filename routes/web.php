@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/questions','ForumController@questions_view')->name('questions');
+
+// Route::get('search','ForumController@search');
+Route::group(['middleware'=>'auth'],function(){
+	Route::get('/newpost', 'ForumController@addpost_view')->name('newpost');
+	Route::get('/home','HomeController@index')->name('home');
+	Route::post('post','ForumController@post')->name('post');
+});
+
+Auth::routes();

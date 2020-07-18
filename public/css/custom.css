@@ -1,0 +1,43 @@
+.profpic{
+	height: 100px;
+	width: 100px;
+}
+.v-divider{
+	border-right: 1px solid #DFDFDF;
+}
+/* styles for ellipsis '…' */ 
+.block-with-text {
+  /* hide text when we have more than N lines */
+  overflow: hidden;
+  /* for setting absolutely positioned ellisis '…' */
+  position: relative;
+  line-height: 1.2em;
+  /* max-height = line-height × line number, 1.2 × 3 = 3.6 */
+  max-height: 3.6em;
+  text-align: justify;  
+  /* place for ellipsis '…' */
+  padding-right: 1em;
+}
+
+/* creating ellipsis … */
+.block-with-text:before {
+  content: "…";
+  position: absolute;
+  /* ellipsis move to right bottom corner */
+  right: 0;
+  bottom: 0;
+}
+
+/* hide ellipsis if we have text not more that maximum line numbers */
+.block-with-text:after {
+  content: "";
+  position: absolute;
+  /* move to the right bottom corner */
+  right: 0;
+  /* setting width и height */
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  /* hide ellipsis using white background */
+  background: white;
+}
