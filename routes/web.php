@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/questions','ForumController@questions_view')->name('questions');
+Route::get('/search','ForumController@search')->name('search');
+Route::get('/oldest','ForumController@oldest')->name('oldest');
+Route::get('/newest','ForumController@questions_view')->name('newest');
 
 // Route::get('search','ForumController@search');
 Route::group(['middleware'=>'auth'],function(){

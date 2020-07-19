@@ -12,7 +12,7 @@ class ForumController extends Controller
     	return view('newpost');
     }
     public function questions_view(){
-    	$posts = Posts::all();
+    	$posts = Posts::all()->sortByDesc('created_at');
     	return view('questions',compact('posts'));
     }
     public function post(Request $request){
@@ -26,6 +26,19 @@ class ForumController extends Controller
 
     	return redirect()->route('questions');
 
+    }
+    public function search(Request $request){
+        $search = $request->search;
+
+        $posts = Posts::where('title','like','%'.$search.'%')->get()->sortByDesc('created_at');
+
+        return view('questions',compact('posts'));
+
+    }
+
+    public function oldest(){
+        $posts = Posts::all()->sortBy('created_at');
+        return view('questions',compact('posts'));
     }
 
 }

@@ -2,6 +2,9 @@
 	height: 100px;
 	width: 100px;
 }
+.sub-text{
+  font-size: 0.8em;
+}
 .v-divider{
 	border-right: 1px solid #DFDFDF;
 }

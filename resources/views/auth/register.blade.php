@@ -50,6 +50,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <span class="sub-text @error('password') d-none @enderror">Password must be at least 8 characters</span>
                             </div>
                         </div>
 
