@@ -17,7 +17,7 @@ class CreateAnswersTable extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('post_id');
-            $table->string('body',999);
+            $table->string('body',4999);
             $table->timestamps();
         });
     }

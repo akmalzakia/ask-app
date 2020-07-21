@@ -5,14 +5,44 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Posts;
+use App\Answers;
 
 class ForumController extends Controller
 {
+    public function index(){
+        return view('welcome');
+    }
+
+
     public function addpost_view(){
     	return view('newpost');
     }
-    public function questions_view(){
-    	$posts = Posts::all()->sortByDesc('created_at');
+    public function questions_view(Request $request,$search = null){
+        $posts = Posts::all();
+        if(isset($request->search)){
+
+            $cari = $request->search;
+
+            if(\Route::current()->getName()=='oldest'){
+                $posts = Posts::where('title','like','%'.$cari.'%')->get()->sortBy('created_at');
+            }
+            else{
+                $posts = Posts::where('title','like','%'.$cari.'%')->get()->sortByDesc('created_at');
+            }
+
+
+            return view('questions',compact('posts','cari'));
+
+        }
+
+
+        if(\Route::current()->getName()=='oldest'){
+            $posts = Posts::all()->sortBy('created_at');
+        }
+        else{
+            $posts = Posts::all()->sortByDesc('created_at');
+        }
+
     	return view('questions',compact('posts'));
     }
     public function post(Request $request){
@@ -27,18 +57,27 @@ class ForumController extends Controller
     	return redirect()->route('questions');
 
     }
-    public function search(Request $request){
-        $search = $request->search;
 
-        $posts = Posts::where('title','like','%'.$search.'%')->get()->sortByDesc('created_at');
+    public function post_view($id){
 
-        return view('questions',compact('posts'));
+        $answers = Answers::where('post_id',$id)->get()->sortByDesc('created_at');
 
+        if(\Route::current()->getName()=='oldest-ans'){
+            $answers = Answers::where('post_id',$id)->get()->sortBy('created_at');
+        }
+        
+        $post = Posts::find($id);
+        return view('post',compact('post','answers'));
     }
 
-    public function oldest(){
-        $posts = Posts::all()->sortBy('created_at');
-        return view('questions',compact('posts'));
-    }
+    public function answer(Request $request, $id){
+        $user = Auth::user()->name;
+        Answers::create([
+            'body' => $request->body,
+            'name' => $user,
+            'post_id' => $id
+        ]);
 
+        return redirect()->route('post_view',$id);
+    }
 }

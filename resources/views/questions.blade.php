@@ -19,6 +19,7 @@
 			<div class="ml-auto mr-3">
 				<div class="btn-group mb-2 ml-2">
 					<?php
+					$search = null;
 					$newest = '';
 					$oldest = '';
 					if(\Route::current()->getName()=='oldest'){
@@ -29,9 +30,17 @@
 						$oldest = '';
 						$newest = 'active';
 					}
+					if(isset($_GET['search'] )){
+						$search = $_GET['search'];
+						// echo "<a href='{{ route('newest',$search) }}' class='btn btn-outline-primary $newest '"
+					}
+					else if(Request::is('questions/oldest/*') || Request::is('questions/newest/*')){
+						$search = $cari;
+					}
+
 					?>
-					<a href="{{ route('newest') }}" class="btn btn-outline-primary <?php echo $newest ?> ">Newest</a>
-					<a href="{{ route('oldest') }}" class="btn btn-outline-warning <?php echo $oldest ?> ">Oldest</a>
+					<a href="{{ route('newest',$search) }}" class="btn btn-outline-primary <?php echo $newest ?> ">Newest</a>
+					<a href="{{ route('oldest',$search) }}" class="btn btn-outline-warning <?php echo $oldest ?> ">Oldest</a>
 				</div>
 			</div>
 		</div>
@@ -53,7 +62,7 @@
 					</div>
 					<div class="col-9">
 						<h3 class="block-with-text">
-							{{ $post->title }}
+							<a href="{{ route('post_view',$post->id) }}">{{ $post->title }}</a>
 						</h3>
 						<hr>
 						<p class="block-with-text">
