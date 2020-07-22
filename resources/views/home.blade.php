@@ -54,8 +54,8 @@
                         </div>
                         <div class="col-4 text-center m-auto">
                             <div class="btn-group">
-                                <a href="" class="btn btn-warning">Edit</a>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('edit-post',$post->id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('delete',$post->id) }}" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -75,8 +75,8 @@
                         </div>
                         <div class="col-4 text-center m-auto">
                             <div class="btn-group">
-                                <a href="" class="btn btn-warning">Edit</a>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('edit-ans',[$answer->post_id,$answer->id]) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('edit-ans',[$answer->post_id,$answer->id]) }}" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                     </div>

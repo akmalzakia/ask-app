@@ -28,6 +28,11 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/home','HomeController@index')->name('home');
 	Route::post('post','ForumController@post')->name('post');
 	Route::post('answer/{id}','ForumController@answer')->name('answer');
+	Route::get('edit-post/{id}','ForumController@post_view')->name('edit-post');
+	Route::get('edit-ans/{id}/{ans_id}','ForumController@post_view')->name('edit-ans');
+	Route::put('update-post/{id}','ForumController@update')->name('update-post');
+	Route::put('update-ans/{id}/{ans_id}','ForumController@update')->name('update-ans');
+	Route::get('delete/{id}/{ans_id?}','ForumController@delete')->name('delete');
 });
 
 Auth::routes();

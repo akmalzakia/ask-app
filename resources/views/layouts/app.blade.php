@@ -120,5 +120,8 @@
             @yield('content')
         </main>
     </div>
+    <script type="text/javascript" src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 </body>
 </html>

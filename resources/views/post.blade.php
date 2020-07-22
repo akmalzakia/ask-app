@@ -4,6 +4,61 @@
 <div class="row mx-5">
 	<div class="card shadow mb-4 w-100">
 		<div class="card-body">
+			@if($post->name == Auth::user()->name && \Route::current()->getName()!='edit-post')
+				<div class="row">
+					<div class="dropdown ml-auto mr-3 no-arrow">
+						<button class="btn btn-link dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown">
+							<i class="fa fa-bars"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton">
+							<a href="{{ route('edit-post',$post->id) }}" class="dropdown-item">Edit</a>
+							<a href="{{ route('delete',$post->id) }}" class="dropdown-item">Delete</a>
+						</div>
+					</div>
+				</div>
+			@endif
+			@if(\Route::current()->getName()=='edit-post')
+			<form class="form" method="POST" action="{{ route('update-post',$post->id) }}">
+				@csrf
+				@method('PUT')
+				<div class="row-mx-2 min-height">
+					<div class="form-group">
+						<label>Title</label>
+						<textarea class="form-control" name="title" rows="3">{{ $data->title }}</textarea>
+					</div>
+				</div>
+				<hr>
+				<div class="row mx-2">
+					<div class="col-3">
+						<div class="container">
+							<img src="https://image.shutterstock.com/image-vector/profile-placeholder-image-gray-silhouette-260nw-1153673752.jpg" class="img-thumbnail profpic mx-auto d-block img-fluid">
+						</div>
+						<hr>
+						<div class="mx-auto mt-1 text-center">
+							{{ $post->name }}
+						</div>
+						<div class="container mt-5">
+							<button class="btn btn-warning px-4 mx-auto d-block" type="submit">Edit</button>
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="form-group">
+							<label>Body</label>
+							<textarea class="form-control" name="body" rows="10">{{ $data->body }}</textarea>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-6 text-center">
+						<span style="font-size: 0.7em">Created on : {{ $post->created_at }}</span>
+					</div>
+					<div class="col-6 text-center">
+						<span style="font-size: 0.7em">Last Edited : {{ $post->updated_at }}</span>
+					</div>
+				</div>
+			</form>
+			@else
 			<div class="row mx-2 min-height">
 				<h3 class="d-inline-block forum">
 					{{ $post->title }}
@@ -27,14 +82,15 @@
 				</div>
 			</div>
 			<hr>
-				<div class="row">
-					<div class="col-6 text-center">
-						<span style="font-size: 0.7em">Created on : {{ $post->created_at }}</span>
-					</div>
-					<div class="col-6 text-center">
-						<span style="font-size: 0.7em">Last Edited : {{ $post->updated_at }}</span>
-					</div>
+			<div class="row">
+				<div class="col-6 text-center">
+					<span style="font-size: 0.7em">Created on : {{ $post->created_at }}</span>
 				</div>
+				<div class="col-6 text-center">
+					<span style="font-size: 0.7em">Last Edited : {{ $post->updated_at }}</span>
+				</div>
+			</div>
+			@endif
 		</div>
 	</div>
 	<div class="row mx-5 w-100">
@@ -59,6 +115,54 @@
 		@foreach($answers as $key => $answer)
 		<div class="card shadow mb-4 w-100">
 			<div class="card-body">
+				@if($answer->name == Auth::user()->name && \Route::current()->getName()!='edit-post')
+				<div class="row">
+					<div class="dropdown ml-auto mr-3 no-arrow">
+						<button class="btn btn-link dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown">
+							<i class="fa fa-bars"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="dropdownMenuButton">
+							<a href="{{ route('edit-ans',[$post->id,$answer->id]) }}" class="dropdown-item">Edit</a>
+							<a href="{{ route('delete',[$post->id,$answer->id]) }}" class="dropdown-item">Delete</a>
+						</div>
+					</div>
+				</div>
+				@endif
+				@if(\Route::current()->getName()=='edit-ans' && $answer->id == $ans_id)
+				<form class="form" method="POST" action="{{ route('update-ans',[$post->id,$answer->id]) }}">
+				@csrf
+				@method('PUT')
+					<div class="row mx-2">
+						<div class="col-3">
+							<div class="container">
+								<img src="https://image.shutterstock.com/image-vector/profile-placeholder-image-gray-silhouette-260nw-1153673752.jpg" class="img-thumbnail profpic mx-auto d-block img-fluid">
+							</div>
+							<hr>
+							<div class="mx-auto mt-1 text-center">
+								{{ $answer->name }}
+							</div>
+							<div class="container mt-5">
+								<button class="btn btn-warning px-4 mx-auto d-block" type="submit">Edit</button>
+							</div>
+						</div>
+						<div class="col-9">
+							<div class="form-group">
+								<label>Body</label>
+									<textarea class="form-control" name="body" rows="10">{{ $answer->body }}</textarea>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-6 text-center">
+							<span style="font-size: 0.7em">Created on : {{ $post->created_at }}</span>
+						</div>
+						<div class="col-6 text-center">
+							<span style="font-size: 0.7em">Last Edited : {{ $post->updated_at }}</span>
+						</div>
+					</div>
+				</form>
+				@else
 				<div class="row mx-2">
 					<div class="col-3">
 						<div class="container">
@@ -84,6 +188,7 @@
 						<span style="font-size: 0.7em">Last Edited : {{ $answer->updated_at }}</span>
 					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 		@endforeach
