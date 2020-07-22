@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('title')
+New Post
+@endsection
+
 @section('content')
 
 

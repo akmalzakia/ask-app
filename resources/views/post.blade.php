@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+{{ $post->title }}
+@endsection
+
 @section('content')
 <div class="row mx-5">
 	<div class="card shadow mb-4 w-100">
@@ -115,7 +119,7 @@
 		@foreach($answers as $key => $answer)
 		<div class="card shadow mb-4 w-100">
 			<div class="card-body">
-				@if($answer->name == Auth::user()->name && \Route::current()->getName()!='edit-post')
+				@if($answer->name == Auth::user()->name && \Route::current()->getName()!='edit-ans')
 				<div class="row">
 					<div class="dropdown ml-auto mr-3 no-arrow">
 						<button class="btn btn-link dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown">
@@ -143,6 +147,9 @@
 							</div>
 							<div class="container mt-5">
 								<button class="btn btn-warning px-4 mx-auto d-block" type="submit">Edit</button>
+							</div>
+							<div class="container text-center mt-2">
+								<a href="{{ route('post_view',$post->id) }}" class="btn btn-danger px-3">Cancel</a>
 							</div>
 						</div>
 						<div class="col-9">

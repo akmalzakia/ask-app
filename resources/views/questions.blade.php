@@ -1,8 +1,13 @@
 @extends('layouts.app')
+
+@section('title')
+Questions
+@endsection
+
 @section('content')
 
 <div class="row mx-2">
-	<div class="col-xl-4 col-lg-5">
+	<!-- <div class="col-xl-4 col-lg-5">
 		<div class="card shadow mb-4">
 			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"></div>
 			<div class="card-body">
@@ -10,8 +15,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-xl-8 col-lg-7">
+	</div> -->
+	<div class="col-12">
 		<div class="row">
 			<div class="mr-auto ml-3">
 				<a href="{{ route('newpost') }}" class="btn btn-primary">Ask a Question</a>
