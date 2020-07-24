@@ -8,6 +8,7 @@
 <div class="row mx-5">
 	<div class="card shadow mb-4 col-md-7 mx-auto">
 		<div class="card-body">
+			@auth
 			@if($post->name == Auth::user()->name && \Route::current()->getName()!='edit-post')
 				<div class="row">
 					<div class="dropdown ml-auto mr-3 no-arrow">
@@ -21,6 +22,7 @@
 					</div>
 				</div>
 			@endif
+			@endauth
 			@if(\Route::current()->getName()=='edit-post')
 			<form class="form" method="POST" action="{{ route('update-post',$post->id) }}">
 				@csrf
@@ -119,6 +121,7 @@
 		@foreach($answers as $key => $answer)
 		<div class="card shadow mb-4">
 			<div class="card-body">
+				@auth
 				@if($answer->name == Auth::user()->name && \Route::current()->getName()!='edit-ans')
 				<div class="row">
 					<div class="dropdown ml-auto mr-3 no-arrow">
@@ -132,6 +135,7 @@
 					</div>
 				</div>
 				@endif
+				@endauth
 				@if(\Route::current()->getName()=='edit-ans' && $answer->id == $ans_id)
 				<form class="form" method="POST" action="{{ route('update-ans',[$post->id,$answer->id]) }}">
 				@csrf
