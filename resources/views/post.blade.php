@@ -44,8 +44,10 @@
 							{{ $post->name }}
 						</div>
 						<div class="container mt-5">
-							<button class="btn btn-warning px-3 mx-auto d-block" type="submit">Edit</button>
-								<button class="btn btn-danger px-3 mx-auto d-block" onclick="history.go(-1)" type="submit">Back</button>
+							<button class="btn btn-warning w-100 mx-auto d-block" type="submit">Edit</button>
+						</div>
+						<div class="container mt-1">
+							<button class="btn btn-danger w-100 mx-auto d-block" onclick="history.go(-1)" type="button">Back</button>
 						</div>
 					</div>
 					<div class="col-9">
@@ -101,6 +103,7 @@
 		</div>
 	</div>
 	<div class="col-md-7 mx-auto d-inline-block">
+		@if(!$answers->isEmpty())
 		<div class="row ml-auto">
 			<div class="btn-group mb-2">
 				<?php
@@ -119,6 +122,7 @@
 				<a href="{{ route('oldest-ans',$post->id) }}" class="btn btn-outline-warning <?php echo $oldest ?> ">Oldest</a>
 			</div>
 		</div>
+		@endif
 		@foreach($answers as $key => $answer)
 		<div class="card shadow mb-4">
 			<div class="card-body">
@@ -151,11 +155,11 @@
 								{{ $answer->name }}
 							</div>
 							<div class="container mt-5">
-								<button class="btn btn-warning px-4 mx-auto d-block" type="submit">Edit</button>
-								<button class="btn btn-warning px-4 mx-auto d-block" onclick="history.go(-1)" type="submit">Back</button>
+								<button class="btn btn-warning w-100 mx-auto d-block" type="submit">Edit</button>
+								
 							</div>
-							<div class="container text-center mt-2">
-								<a href="{{ route('post_view',$post->id) }}" class="btn btn-danger px-3">Cancel</a>
+							<div class="container mt-1">
+								<button class="btn btn-danger w-100 mx-auto d-block" onclick="history.go(-1)" type="button">Back</button>
 							</div>
 						</div>
 						<div class="col-9">

@@ -8,6 +8,12 @@
 .v-divider{
 	border-right: 1px solid #DFDFDF;
 }
+.custom-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
 /* styles for ellipsis '…' */ 
 .block-with-text {
   /* hide text when we have more than N lines */

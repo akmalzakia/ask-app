@@ -4,18 +4,35 @@
 Questions
 @endsection
 
+
+@if($posts->isEmpty())
 @section('content')
 
 <div class="row mx-2">
-	<!-- <div class="col-xl-4 col-lg-5">
-		<div class="card shadow mb-4">
-			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"></div>
+	<div class="col-md-7 mx-auto">
+		<div class="card shadow mb-3">
 			<div class="card-body">
-				<div class="row">
+				<div class="custom-container">
+					<div class="custom-content">
+						<div>
+							Question is empty
+						</div>
+						<hr>
+						<a href="{{ route('newpost') }}" class="btn btn-primary">Ask a Question!</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
+</div>
+
+
+@endsection
+@else
+
+@section('content')
+
+<div class="row mx-2">
 	<div class="col-md-7 mx-auto">
 		<div class="row">
 			<div class="mr-auto ml-3">
@@ -92,3 +109,4 @@ Questions
 </div>
 
 @endsection
+@endif
