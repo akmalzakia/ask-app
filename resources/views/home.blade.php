@@ -7,10 +7,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-7 mx-auto">
             <div class="card shadow mb-3">
                 <div class="card-header">
-                    <span>Hi</span>
+                    <span>Hi, {{ Auth::user()->name }}!</span>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -21,29 +21,6 @@
                             {{ Auth::user()->name }}
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="card shadow mb-3">
-                <div class="card-header text-center">
-                    <span>{{ Auth::user()->name }}'s profile</span>
-                </div>
-                <div class="card-body">
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card shadow mb-3">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
             <div class="card shadow mb-3">
@@ -65,6 +42,7 @@
                     </div>
                     <hr>
                     @endforeach
+                    {{ $user_post->links() }}
                 </div>
             </div>
             <div class="card shadow mb-3">
@@ -86,6 +64,7 @@
                     </div>
                     <hr>
                     @endforeach
+                    {{ $user_ans->links() }}
                 </div>
             </div>
         </div>

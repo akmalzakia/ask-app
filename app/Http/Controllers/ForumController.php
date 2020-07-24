@@ -18,16 +18,15 @@ class ForumController extends Controller
     	return view('newpost');
     }
     public function questions_view(Request $request,$search = null){
-        $posts = Posts::all();
         if(isset($request->search)){
 
             $cari = $request->search;
 
             if(\Route::current()->getName()=='oldest'){
-                $posts = Posts::where('title','like','%'.$cari.'%')->get()->sortBy('created_at');
+                $posts = Posts::where('title','like','%'.$cari.'%')->orderByRaw('created_at')->paginate(5);
             }
             else{
-                $posts = Posts::where('title','like','%'.$cari.'%')->get()->sortByDesc('created_at');
+                $posts = Posts::where('title','like','%'.$cari.'%')->orderByRaw('created_at DESC')->paginate(5);
             }
 
 
@@ -37,10 +36,10 @@ class ForumController extends Controller
 
 
         if(\Route::current()->getName()=='oldest'){
-            $posts = Posts::all()->sortBy('created_at');
+            $posts = Posts::orderByRaw('created_at')->paginate(5);
         }
         else{
-            $posts = Posts::all()->sortByDesc('created_at');
+            $posts = Posts::orderByRaw('created_at DESC')->paginate(5);
         }
 
     	return view('questions',compact('posts'));
@@ -67,10 +66,10 @@ class ForumController extends Controller
             $data = Answers::find($ans_id);
         }
 
-        $answers = Answers::where('post_id',$id)->get()->sortByDesc('created_at');
+        $answers = Answers::where('post_id',$id)->orderByRaw('created_at DESC')->paginate(5);
 
         if(\Route::current()->getName()=='oldest-ans'){
-            $answers = Answers::where('post_id',$id)->get()->sortBy('created_at');
+            $answers = Answers::where('post_id',$id)->orderByRaw('created_at')->paginate(5);
         }
         
         $post = Posts::find($id);

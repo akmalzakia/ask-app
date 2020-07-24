@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="row mx-5">
-	<div class="card shadow mb-4 w-100">
+	<div class="card shadow mb-4 col-md-7 mx-auto">
 		<div class="card-body">
 			@if($post->name == Auth::user()->name && \Route::current()->getName()!='edit-post')
 				<div class="row">
@@ -97,9 +97,9 @@
 			@endif
 		</div>
 	</div>
-	<div class="row mx-5 w-100">
-		<div class="ml-auto mr-3">
-			<div class="btn-group mb-2 ml-2">
+	<div class="col-md-7 mx-auto d-inline-block">
+		<div class="row ml-auto">
+			<div class="btn-group mb-2">
 				<?php
 				$newest = '';
 				$oldest = '';
@@ -117,7 +117,7 @@
 			</div>
 		</div>
 		@foreach($answers as $key => $answer)
-		<div class="card shadow mb-4 w-100">
+		<div class="card shadow mb-4">
 			<div class="card-body">
 				@if($answer->name == Auth::user()->name && \Route::current()->getName()!='edit-ans')
 				<div class="row">
@@ -199,6 +199,7 @@
 			</div>
 		</div>
 		@endforeach
+		{{ $answers->links() }}
 		<div class="card shadow mb-4 w-100">
 			<div class="card-header">
 				<span>Your Answer</span>

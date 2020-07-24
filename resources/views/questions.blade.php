@@ -16,7 +16,7 @@ Questions
 			</div>
 		</div>
 	</div> -->
-	<div class="col-12">
+	<div class="col-md-7 mx-auto">
 		<div class="row">
 			<div class="mr-auto ml-3">
 				<a href="{{ route('newpost') }}" class="btn btn-primary">Ask a Question</a>
@@ -87,6 +87,7 @@ Questions
 			</div>
 		</div>
 		@endforeach
+		{{ $posts->links() }}
 	</div>
 </div>
 
