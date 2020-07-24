@@ -44,7 +44,8 @@
 							{{ $post->name }}
 						</div>
 						<div class="container mt-5">
-							<button class="btn btn-warning px-4 mx-auto d-block" type="submit">Edit</button>
+							<button class="btn btn-warning px-3 mx-auto d-block" type="submit">Edit</button>
+								<button class="btn btn-danger px-3 mx-auto d-block" onclick="history.go(-1)" type="submit">Back</button>
 						</div>
 					</div>
 					<div class="col-9">
@@ -151,6 +152,7 @@
 							</div>
 							<div class="container mt-5">
 								<button class="btn btn-warning px-4 mx-auto d-block" type="submit">Edit</button>
+								<button class="btn btn-warning px-4 mx-auto d-block" onclick="history.go(-1)" type="submit">Back</button>
 							</div>
 							<div class="container text-center mt-2">
 								<a href="{{ route('post_view',$post->id) }}" class="btn btn-danger px-3">Cancel</a>
